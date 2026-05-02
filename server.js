@@ -40,7 +40,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/workout", workoutRoutes);
 
 // MongoDB connection (LOCAL)
-mongoose.connect("mongodb+srv://aadhavan142_db_user:Prb6mRfvJLfB5zOC@cluster0.7adsnlp.mongodb.net")
+mongoose.connect("mongodb+srv://aadhavan142_db_user:thenmozhi@cluster0.7adsnlp.mongodb.net")
   .then(() => {
     console.log("MongoDB connected");
 
