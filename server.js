@@ -8,6 +8,7 @@ const authRoutes = require("./routes/auth");
 const workoutRoutes = require("./routes/workout");
 
 const app = express();
+
 const dns = require('dns');
 dns.setServers([
   '8.8.8.8',
@@ -24,28 +25,30 @@ app.get("/", (req, res) => {
   res.send("API Working");
 });
 
-//dd
+// Test route
 app.get("/test", (req, res) => {
   console.log("TEST ROUTE HIT");
   res.send("TEST OK");
 });
-// Debug test
+
 app.post("/test", (req, res) => {
   res.send("TEST OK");
 });
 
 // Routes
-
 app.use("/api/auth", authRoutes);
 app.use("/api/workout", workoutRoutes);
 
-// MongoDB connection (LOCAL)
-mongoose.connect("mongodb+srv://aadhavan142_db_user:thenmozhi@cluster0.7adsnlp.mongodb.net")
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
 
-    app.listen(5000, () => {
-      console.log("Server running on port 5000");
+    // PORT FIX
+    const PORT = process.env.PORT || 5000;
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
